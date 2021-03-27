@@ -1,3 +1,14 @@
+# Focus App Using React Native
+
+## Features
+
+- Gets user input and sets a timer (6 seconds default)
+- Users can switch the timer to 10, 15, or 20 minutes timer
+- Completed tasks will be rendered green or red (completed or incomplete respectively)
+- Device vibration once task is completed
+- Stores completed task in local storage
+
+
 # Sample Snack app
 
 Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
