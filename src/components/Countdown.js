@@ -20,20 +20,33 @@ export const Countdown = ({
     setMs((time) => {
       if(time === 0) {
         clearInterval(interval.current);
-        onEnd();
+        // onEnd();
+        // Note this code above is not a good practice since setMs() is a state function (re-renders) and 
+        // onProgress is another state function passed down from the parent component (that re-renders).**
         return time;
       }
 
       const timeLeft = time - 1000;
-      onProgress(timeLeft / minutesToMs(minutes))
+      // onProgress(timeLeft / minutesToMs(minutes))
+      // Note this code above is not a good practice since setMs() is a state function (re-renders) and 
+      // onProgress is another state function passed down from the parent component (that re-renders).**
       return timeLeft;
     }) 
   }
+
+  // ** instead, by using useEffect and passing in ms as the dependency so that everytime ms changes, the onProgress function gets invoked, would be the cleaner way of coding. 
+  useEffect(() => {
+    onProgress(ms / minutesToMs(minutes));
+    if(time === 0) {
+      onEnd();
+    }
+  }, [ms])
 
 // Equivalent to componentDidUpdate
   useEffect(() => {
     setMs(minutesToMs(minutes));
   }, [minutes])
+
   
   useEffect(() => {
     if (isPaused) {

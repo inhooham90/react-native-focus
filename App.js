@@ -12,7 +12,8 @@ export default function App() {
   const [focusHistory, setFocusHistory] = useState([]);
 
   const addFocusHistorySubjectWithState = (subject, status) => {
-    setFocusHistory([...focusHistory, { subject, status }]);
+    // we are adding the key because FlatList requires keys
+    setFocusHistory([...focusHistory, { subject, status, key: String(focusHistory.length + 1) }]);
   };
 
   const onClear = () => {
@@ -67,10 +68,10 @@ export default function App() {
           }}
         />
       ) : (
-        <>
+        <View style={{ flex: 1 }}>
           <Focus addSubject={setFocusSubject} />
           <FocusHistory focusHistory={focusHistory} onClear={onClear} />
-        </>
+        </View>
       )}
     </View>
   );
